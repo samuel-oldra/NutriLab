@@ -1,7 +1,10 @@
-# Tocador de Música
+# Aplicação usando Python e Django 4
 
-* Funcionalidades padrão
+## [nome] - PyStack Week 4.0 (Em breve... 04/07...)
 
-* Diferencial é poder deletar o arquivo físico da música
+[descrição]
 
-> Porque eu quero!
+## Tecnologias e práticas utilizadas
+- Python
+- Django 4
+- Arquitetura MVT
