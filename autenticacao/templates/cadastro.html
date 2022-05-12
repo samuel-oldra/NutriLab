@@ -22,7 +22,8 @@
                     <h2 class="titulo">Seja bem-vindo</h2>
                     <p class="sub-titulo">Crie sua conta</p>
                     <hr>
-                    <form action="" method="">
+                    <form action="{% url 'cadastro' %}" method="POST">
+                        {% csrf_token %}
                         <span class="bold">Nome de usuário</span>
                         <input class="form-control input-form" name="usuario" type="text"
                                placeholder="Digite seu nome...">
