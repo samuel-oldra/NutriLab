@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from .utils import password_is_valid
 
 
 def cadastro(request):
@@ -10,6 +12,9 @@ def cadastro(request):
         email = request.POST.get('email')
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
+
+        if not password_is_valid(request, senha, confirmar_senha):
+            return redirect('/auth/cadastro')
 
         return HttpResponse(confirmar_senha)
 
