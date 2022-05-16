@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
@@ -17,6 +18,13 @@ def cadastro(request):
             return redirect('/auth/cadastro')
 
         # TODO: Verificar se username é único
+
+        try:
+            user = User.objects.create_user(username=username, email=email, password=senha, is_active=False)
+            user.save()
+            return redirect('/auth/logar')
+        except:
+            return redirect('/auth/cadastro')
 
         return HttpResponse(confirmar_senha)
 
