@@ -13,7 +13,7 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 - Arquitetura MVT
 
 ## Funcionalidades
-- Autenticação e Cadastro de Usuário
+- Autenticação, Cadastro e Ativação de Usuários
 
 ###
 
@@ -52,6 +52,7 @@ env\Scripts\deactivate.bat
 ### Criar apps
 ```
 (env) python manage.py startapp autenticacao
+(env) python manage.py startapp plataforma
 ```
 
 ### Migrations
