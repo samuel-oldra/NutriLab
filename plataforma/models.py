@@ -4,7 +4,7 @@ from django.db import models
 
 class Pacientes(models.Model):
     choices_sexo = (('F', 'Feminino'),
-                    ('M', 'Maculino'))
+                    ('M', 'Masculino'))
     nome = models.CharField(max_length=50)
     sexo = models.CharField(max_length=1, choices=choices_sexo)
     idade = models.IntegerField()
