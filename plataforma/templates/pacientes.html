@@ -1,5 +1,53 @@
 {% extends 'base_plataforma.html' %}
+{% load static %}
 
 {% block 'plataforma' %}
-    Plataforma
+    <br>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal">
+        Novo paciente
+    </button>
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title titulo" id="exampleModalLabel">Cadastrar paciente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{% static 'plataforma/img/perfil2.png' %}">
+                            </div>
+                            <div class="col-md-9">
+                                <label>Nome:</label>
+                                <input type="text" name="nome" class="form-control"
+                                       placeholder="Digite o nome do paciente...">
+                            </div>
+                        </div>
+                        <br>
+                        <label>Sexo:</label>
+                        <select name="sexo" class="form-control">
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                        <br>
+                        <label>Idade:</label>
+                        <input type="number" placeholder="0" class="form-control" name="idade">
+                        <br>
+                        <label>E-mail:</label>
+                        <input type="email" name="email" class="form-control" placeholder="exemple@email.com">
+                        <br>
+                        <label>Telefone:</label>
+                        <input type="text" name="telefone" class="form-control" placeholder="+55 (00) 00000-0000">
+                        <br>
+                        <input type="submit" class="btn btn-success btn-lg" value="Registar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
