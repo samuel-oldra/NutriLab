@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block 'plataforma' %}
+
+    {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
     <br>
     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal">
         Novo paciente
@@ -17,7 +27,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="{% url 'pacientes' %}" method="POST">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-3">
                                 <img src="{% static 'plataforma/img/perfil2.png' %}">
