@@ -9,7 +9,8 @@ from .models import Pacientes
 @login_required(login_url='/auth/logar/')
 def pacientes(request):
     if request.method == "GET":
-        return render(request, 'pacientes.html')
+        pacientes = Pacientes.objects.filter(nutri=request.user)
+        return render(request, 'pacientes.html', {'pacientes': pacientes})
     elif request.method == "POST":
         nome = request.POST.get('nome')
         sexo = request.POST.get('sexo')
