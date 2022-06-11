@@ -59,7 +59,8 @@ def dados_paciente(request, id):
         return redirect('/dados_paciente/')
 
     if request.method == "GET":
-        return render(request, 'dados_paciente.html', {'paciente': paciente})
+        dados_paciente = DadosPaciente.objects.filter(paciente=paciente)
+        return render(request, 'dados_paciente.html', {'paciente': paciente, 'dados_paciente': dados_paciente})
     elif request.method == "POST":
         peso = request.POST.get('peso')
         altura = request.POST.get('altura')
@@ -71,7 +72,7 @@ def dados_paciente(request, id):
         colesterol_total = request.POST.get('ctotal')
         triglicerídios = request.POST.get('triglicerídios')
 
-        # TODO: Valide se todos os dados estão preenchidos e estão corretos
+        # TODO: Validar se todos os dados estão preenchidos e estão corretos
 
         paciente = DadosPaciente(paciente=paciente, data=datetime.now(), peso=peso, altura=altura,
                                  percentual_gordura=gordura, percentual_musculo=musculo, colesterol_hdl=hdl,
