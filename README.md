@@ -14,6 +14,7 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 
 ## Funcionalidades
 - Autenticação, Cadastro e Ativação de Usuários
+- Gestão de Pacientes e seus Dados Laboratoriais
 
 ###
 
@@ -22,6 +23,7 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/gerenciar_pacientes.png)
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/novo_paciente.png)
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_dos_pacientes.png)
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_dos_pacientes_detalhes.png)
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_do_paciente.png)
 
 ## Comandos
