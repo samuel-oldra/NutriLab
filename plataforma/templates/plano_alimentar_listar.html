@@ -1,0 +1,42 @@
+{% extends 'base_plataforma.html' %}
+{% load static %}
+
+{% block 'plataforma' %}
+
+    {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <h1 class="titulo">Escolha o paciente</h1>
+    <div class="row">
+
+        {% for paciente in pacientes %}
+
+            <div class="col-md-4">
+                <a href="{% url 'plano_alimentar' paciente.id %}" class="link-hover">
+                    <div class="card-paciente">
+                        <div class="foto-perfil">
+                            {% if paciente.sexo == "M" %}
+                                <img src="{% static 'plataforma/img/perfil2.png' %}">
+                            {% else %}
+                                <img src="{% static 'plataforma/img/perfil1.png' %}">
+                            {% endif %}
+                        </div>
+                        <br>
+                        <p class="dados">{{ paciente.nome }}</p>
+                        <p class="dados">{{ paciente.idade }} anos</p>
+                        <p class="dados">{{ paciente.email }}</p>
+                    </div>
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endblock %}
