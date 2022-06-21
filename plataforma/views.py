@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Pacientes, DadosPaciente
+from .models import Pacientes, DadosPaciente, Refeicao
 
 
 @login_required(login_url='/auth/logar/')
@@ -109,4 +109,27 @@ def plano_alimentar(request, id):
         return redirect('/plano_alimentar_listar/')
 
     if request.method == "GET":
-        return render(request, 'plano_alimentar.html', {'paciente': paciente})
+        refeicoes = Refeicao.objects.filter(paciente=paciente).order_by('horario')
+        return render(request, 'plano_alimentar.html', {'paciente': paciente, 'refeicoes': refeicoes})
+
+
+def refeicao(request, id_paciente):
+    paciente = get_object_or_404(Pacientes, id=id_paciente)
+    if not paciente.nutri == request.user:
+        messages.add_message(request, constants.ERROR, 'Esse paciente não é seu')
+        return redirect('/plano_alimentar_listar/')
+
+    if request.method == "POST":
+        titulo = request.POST.get('titulo')
+        horario = request.POST.get('horario')
+
+        carboidratos = request.POST.get('carboidratos')
+        proteinas = request.POST.get('proteinas')
+        gorduras = request.POST.get('gorduras')
+
+        refeicao = Refeicao(paciente=paciente, titulo=titulo, horario=horario, carboidratos=carboidratos,
+                            proteinas=proteinas, gorduras=gorduras)
+        refeicao.save()
+
+        messages.add_message(request, constants.SUCCESS, 'Refeição cadastrada')
+        return redirect(f'/plano_alimentar/{id_paciente}')

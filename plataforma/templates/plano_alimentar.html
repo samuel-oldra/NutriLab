@@ -36,24 +36,31 @@
     <br>
     <br>
     <div class="fundo-alimentar">
-        <div class="refeicao">
-            <div class="head-refeicao">
-                <span>Café da manhã</span>
-                <span style="float: right;">07:00h</span>
-            </div>
-            <div class="body-refeicao">
-                <div class="opcao">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img width="100%" src="{% static 'plataforma/img/perfil1.png' %}">
-                        </div>
-                        <div class="col-md-10">
-                            Teste 2
+
+        {% for refeicao in refeicoes %}
+
+            <div class="refeicao">
+                <div class="head-refeicao">
+                    <span>{{ refeicao.titulo }}</span>
+                    <span style="float: right;">{{ refeicao.horario }}h</span>
+                </div>
+                <div class="body-refeicao">
+                    <div class="opcao">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img width="100%" src="{% static 'plataforma/img/perfil1.png' %}">
+                            </div>
+                            <div class="col-md-10">
+                                Teste 2
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <br>
+
+        {% endfor %}
+
     </div>
 
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -78,7 +85,7 @@
                     <br>
 
                     <div id="form-refeicao" style="display: block;">
-                        <form action="" method="POST">
+                        <form action="{% url 'refeicao' paciente.id %}" method="POST">
                             {% csrf_token %}
                             <label for="validationServerUsername">Título</label>
                             <div class="input-group">
