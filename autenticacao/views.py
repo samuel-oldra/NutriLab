@@ -29,7 +29,12 @@ def cadastro(request):
         # TODO: Verificar se username é único
 
         try:
-            user = User.objects.create_user(username=username, email=email, password=senha, is_active=False)
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=senha,
+                is_active=False
+            )
             user.save()
 
             token = sha256(f"{username}{email}".encode()).hexdigest()
@@ -37,9 +42,17 @@ def cadastro(request):
             ativacao = Ativacao(token=token, user=user)
             ativacao.save()
 
-            path_template = os.path.join(settings.BASE_DIR, 'autenticacao/templates/emails/cadastro_confirmado.html')
-            email_html(path_template, 'Cadastro confirmado', [email, ], username=username,
-                       link_ativacao=f"127.0.0.1:8000/auth/ativar_conta/{token}")
+            path_template = os.path.join(
+                settings.BASE_DIR,
+                'autenticacao/templates/emails/cadastro_confirmado.html'
+            )
+            email_html(
+                path_template,
+                'Cadastro confirmado',
+                [email, ],
+                username=username,
+                link_ativacao=f"127.0.0.1:8000/auth/ativar_conta/{token}"
+            )
 
             messages.add_message(request, constants.SUCCESS, 'Usuário cadastrado com sucesso')
             return redirect('/auth/logar')
@@ -59,7 +72,6 @@ def logar(request):
         senha = request.POST.get('senha')
 
         usuario = auth.authenticate(username=username, password=senha)
-
         if not usuario:
             messages.add_message(request, constants.ERROR, 'Username ou senha inválidos')
             return redirect('/auth/logar')
@@ -75,7 +87,6 @@ def sair(request):
 
 def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
-
     if token.ativo:
         messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
         return redirect('/auth/logar')

@@ -21,8 +21,11 @@ def pacientes(request):
         email = request.POST.get('email')
         telefone = request.POST.get('telefone')
 
-        if ((len(nome.strip()) == 0) or (len(sexo.strip()) == 0) or (len(idade.strip()) == 0)
-            or (len(email.strip()) == 0) or (len(telefone.strip()) == 0)):
+        if (len(nome.strip()) == 0
+            or len(sexo.strip()) == 0
+            or len(idade.strip()) == 0
+            or len(email.strip()) == 0
+            or len(telefone.strip()) == 0):
             messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
             return redirect('/pacientes/')
 
@@ -36,7 +39,14 @@ def pacientes(request):
             return redirect('/pacientes/')
 
         try:
-            paciente = Pacientes(nome=nome, sexo=sexo, idade=idade, email=email, telefone=telefone, nutri=request.user)
+            paciente = Pacientes(
+                nome=nome,
+                sexo=sexo,
+                idade=idade,
+                email=email,
+                telefone=telefone,
+                nutri=request.user
+            )
             paciente.save()
 
             messages.add_message(request, constants.SUCCESS, 'Paciente cadastrado com sucesso')
@@ -76,9 +86,18 @@ def dados_paciente(request, id):
 
         # TODO: Validar se todos os dados estão preenchidos e estão corretos
 
-        paciente = DadosPaciente(paciente=paciente, data=datetime.now(), peso=peso, altura=altura,
-                                 percentual_gordura=gordura, percentual_musculo=musculo, colesterol_hdl=hdl,
-                                 colesterol_ldl=ldl, colesterol_total=colesterol_total, trigliceridios=triglicerídios)
+        paciente = DadosPaciente(
+            paciente=paciente,
+            data=datetime.now(),
+            peso=peso,
+            altura=altura,
+            percentual_gordura=gordura,
+            percentual_musculo=musculo,
+            colesterol_hdl=hdl,
+            colesterol_ldl=ldl,
+            colesterol_total=colesterol_total,
+            trigliceridios=triglicerídios
+        )
         paciente.save()
 
         messages.add_message(request, constants.SUCCESS, 'Dados cadastrado com sucesso')
@@ -128,8 +147,14 @@ def refeicao(request, id_paciente):
         proteinas = request.POST.get('proteinas')
         gorduras = request.POST.get('gorduras')
 
-        refeicao = Refeicao(paciente=paciente, titulo=titulo, horario=horario, carboidratos=carboidratos,
-                            proteinas=proteinas, gorduras=gorduras)
+        refeicao = Refeicao(
+            paciente=paciente,
+            titulo=titulo,
+            horario=horario,
+            carboidratos=carboidratos,
+            proteinas=proteinas,
+            gorduras=gorduras
+        )
         refeicao.save()
 
         messages.add_message(request, constants.SUCCESS, 'Refeição cadastrada')
@@ -142,7 +167,11 @@ def opcao(request, id_paciente):
         imagem = request.FILES.get('imagem')
         descricao = request.POST.get("descricao")
 
-        opcao = Opcao(refeicao_id=id_refeicao, imagem=imagem, descricao=descricao)
+        opcao = Opcao(
+            refeicao_id=id_refeicao,
+            imagem=imagem,
+            descricao=descricao
+        )
         opcao.save()
 
         messages.add_message(request, constants.SUCCESS, 'Opção cadastrada')
