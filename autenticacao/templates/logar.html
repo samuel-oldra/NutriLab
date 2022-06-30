@@ -1,12 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'autenticacao/css/cadastro.css' %}">
 {% endblock %}
-
 {% block 'titulo' %}Cadastre-se{% endblock %}
-
 {% block 'body' %}
     <div class="container-fluid">
         <div class="row">
@@ -19,7 +16,6 @@
             </div>
             <div class="col-md-9">
                 <div class="area_cadastrar">
-
                     {% if messages %}
                         <br>
                         {% for message in messages %}
@@ -28,7 +24,6 @@
                             </div>
                         {% endfor %}
                     {% endif %}
-
                     <h2 class="titulo">Seja bem-vindo</h2>
                     <p class="sub-titulo">Entre com sua conta</p>
                     <hr>
