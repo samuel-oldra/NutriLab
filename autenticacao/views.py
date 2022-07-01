@@ -1,11 +1,12 @@
 import os
+from hashlib import sha256
+
 from django.conf import settings
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.shortcuts import render, redirect, get_object_or_404
-from hashlib import sha256
 
 from .models import Ativacao
 from .utils import password_is_valid, email_html
@@ -15,8 +16,8 @@ def cadastro(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect('/')
-
-        return render(request, 'cadastro.html')
+        else:
+            return render(request, 'cadastro.html')
     elif request.method == "POST":
         username = request.POST.get('usuario')
         email = request.POST.get('email')
@@ -38,7 +39,6 @@ def cadastro(request):
             user.save()
 
             token = sha256(f"{username}{email}".encode()).hexdigest()
-
             ativacao = Ativacao(token=token, user=user)
             ativacao.save()
 
@@ -65,8 +65,8 @@ def logar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect('/')
-
-        return render(request, 'logar.html')
+        else:
+            return render(request, 'logar.html')
     elif request.method == "POST":
         username = request.POST.get('usuario')
         senha = request.POST.get('senha')
@@ -87,6 +87,7 @@ def sair(request):
 
 def ativar_conta(request, token):
     token = get_object_or_404(Ativacao, token=token)
+
     if token.ativo:
         messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
         return redirect('/auth/logar')
