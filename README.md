@@ -1,6 +1,11 @@
-# Aplicação usando Python e Django 4.2
-
-## NutriLab - PyStack Week 4.0
+<h1 align="center">
+  NutriLab - PyStack Week 4.0
+</h1>
+<p align="center">
+  <a href="#tecnologias-e-práticas-utilizadas">Tecnologias e práticas utilizadas</a> •
+  <a href="#funcionalidades">Funcionalidades</a> •
+  <a href="#comandos">Comandos</a>
+</p>
 
 Aplicação para nutricionistas e pacientes.
 
