@@ -1,0 +1,56 @@
+.sidebar {
+    background-color: #27DB8F;
+    height: 100vh;
+}
+
+.logo_sidebar {
+    text-align: center;
+}
+
+.img_logo_sidebar {
+    width: 100%;
+}
+
+.sidebar {
+    background-image: url("/static/autenticacao/img/fundo_background.png");
+}
+
+.area_cadastrar {
+    margin-top: 8%;
+    margin-left: 15%;
+    width: 70%;
+}
+
+.titulo {
+    font-weight: bold;
+}
+
+.sub-titulo {
+    color: gray;
+}
+
+.input-form {
+    margin-top: 15px;
+    width: 100%;
+    padding: 5px;
+    outline: 0;
+}
+
+.input-form:focus {
+    border: 2px solid #27DB8F !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.btn-first {
+    border: none;
+    padding: 5px 15px 5px 15px;
+    font-size: 25px;
+    background-color: #27DB8F;
+    color: white;
+    font-weight: bold;
+}
