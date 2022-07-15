@@ -16,6 +16,8 @@ def cadastro(request):
         if not password_is_valid(request, senha, confirmar_senha):
             return redirect('/auth/cadastro')
 
+        # TODO: Verificar se username é único
+
         return HttpResponse(confirmar_senha)
 
 
