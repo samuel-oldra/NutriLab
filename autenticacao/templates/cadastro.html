@@ -19,6 +19,15 @@
             </div>
             <div class="col-md-9">
                 <div class="area_cadastrar">
+                    {% if messages %}
+                        <br>
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                     <h2 class="titulo">Seja bem-vindo</h2>
                     <p class="sub-titulo">Crie sua conta</p>
                     <hr>
