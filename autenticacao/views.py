@@ -4,7 +4,6 @@ from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from hashlib import sha256
 
@@ -16,6 +15,7 @@ def cadastro(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect('/')
+
         return render(request, 'cadastro.html')
     elif request.method == "POST":
         username = request.POST.get('usuario')
@@ -33,6 +33,7 @@ def cadastro(request):
             user.save()
 
             token = sha256(f"{username}{email}".encode()).hexdigest()
+
             ativacao = Ativacao(token=token, user=user)
             ativacao.save()
 
@@ -46,13 +47,12 @@ def cadastro(request):
             messages.add_message(request, constants.ERROR, 'Erro interno do sistema')
             return redirect('/auth/cadastro')
 
-        return HttpResponse(confirmar_senha)
-
 
 def logar(request):
     if request.method == "GET":
         if request.user.is_authenticated:
             return redirect('/')
+
         return render(request, 'logar.html')
     elif request.method == "POST":
         username = request.POST.get('usuario')
@@ -65,8 +65,7 @@ def logar(request):
             return redirect('/auth/logar')
         else:
             auth.login(request, usuario)
-
-    return redirect('/')
+            return redirect('/')
 
 
 def sair(request):
