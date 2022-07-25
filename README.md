@@ -12,7 +12,7 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 - SQLite
 - Arquitetura MVT
 
-## Funcionalidade
+## Funcionalidades
 - Autenticação e Cadastro de Usuário
 
 ###
