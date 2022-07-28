@@ -1,0 +1,48 @@
+.card-lateral {
+    background-color: #27DB8F;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.link-lateral:hover {
+    text-decoration: none;
+}
+
+.titulo {
+    color: #27DB8F;
+}
+
+.card-paciente {
+    background-color: #EAEAEA;
+    width: 80%;
+    box-shadow: 3px 3px 3px gray;
+    padding: 20px;
+    color: black;
+}
+
+.link-hover:hover {
+    text-decoration: none;
+}
+
+.foto-perfil {
+    text-align: center;
+}
+
+.dados {
+    font-weight: bold;
+}
+
+.descricao {
+    margin-left: -12%;
+}
+
+@media (max-width: 1300px) {
+    .descricao {
+        margin-left: 1px;
+    }
+}
