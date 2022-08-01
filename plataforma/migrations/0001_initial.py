@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=50)),
-                ('sexo', models.CharField(choices=[('F', 'Feminino'), ('M', 'Maculino')], max_length=1)),
+                ('sexo', models.CharField(choices=[('F', 'Feminino'), ('M', 'Masculino')], max_length=1)),
                 ('idade', models.IntegerField()),
                 ('email', models.EmailField(max_length=254)),
                 ('telefone', models.CharField(max_length=19)),
