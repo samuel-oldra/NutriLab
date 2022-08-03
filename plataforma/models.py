@@ -12,6 +12,5 @@ class Pacientes(models.Model):
     telefone = models.CharField(max_length=19)
     nutri = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
-def __str__(self):
-    return self.nome
+    def __str__(self):
+        return self.nome
