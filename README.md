@@ -17,7 +17,8 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 
 ###
 
-[imagens]
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/logar.png)
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/cadastre-se.png)
 
 ## Comandos
 
