@@ -1,0 +1,166 @@
+{% extends 'base_plataforma.html' %}
+{% load static %}
+
+{% block 'plataforma' %}
+
+    {% if messages %}
+        <br>
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            {% if paciente.sexo == "M" %}
+                <img src="{% static 'plataforma/img/perfil2.png' %}">
+            {% else %}
+                <img src="{% static 'plataforma/img/perfil1.png' %}">
+            {% endif %}
+        </div>
+        <div class="col-md-3 dados descricao">
+            <h4>{{ paciente.nome }}</h4>
+            <h6>{{ paciente.idade }} anos</h6>
+        </div>
+    </div>
+    <hr>
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal">
+        + Nova refeição
+    </button>
+    <button type="button" class="btn btn-outline-primary">
+        Exportar refeição
+    </button>
+    <br>
+    <br>
+    <div class="fundo-alimentar">
+        <div class="refeicao">
+            <div class="head-refeicao">
+                <span>Café da manhã</span>
+                <span style="float: right;">07:00h</span>
+            </div>
+            <div class="body-refeicao">
+                <div class="opcao">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img width="100%" src="{% static 'plataforma/img/perfil1.png' %}">
+                        </div>
+                        <div class="col-md-10">
+                            Teste 2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="titulo">Adicionar refeição</h4>
+                    <button type="button" class="btn btn-outline-success" onclick="exibe_refeicao()">
+                        + Nova refeição
+                    </button>
+                    <button style="margin-left: 10px;" type="button" class="btn btn-outline-success"
+                            onclick="exibe_opcao()">
+                        + Nova opção
+                    </button>
+                    <br>
+                    <br>
+
+                    <div id="form-refeicao" style="display: block;">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <label for="validationServerUsername">Título</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Ex: Café da manhã" name="titulo">
+                            </div>
+                            <br>
+                            <label for="validationServerUsername">Horário</label>
+                            <div class="input-group">
+                                <input type="time" class="form-control" placeholder="-" name="horario">
+                            </div>
+                            <br>
+                            <h5 class="titulo">Macronutrientes</h5>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="validationServerUsername">Carboidratos</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="" name="carboidratos">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="validationServerUsername">Proteínas</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="" name="proteinas">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="validationServerUsername">Gorduras</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="" name="gorduras">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <input type="submit" value="Cadastrar" class="btn btn-success">
+                        </form>
+                    </div>
+
+                    <div id="form-opcao" style="display: none;">
+                        <form action="" method="POST" enctype='multipart/form-data'>
+                            {% csrf_token %}
+                            <label for="validationServerUsername">Selecione a refeição</label>
+                            <div class="input-group">
+                                <select class="form-control" name="refeicao">
+                                    <option value="">Café da manhã</option>
+                                </select>
+                            </div>
+                            <br>
+                            <label for="validationServerUsername">Imagem</label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" placeholder="" name="imagem">
+                            </div>
+                            <br>
+                            <label for="validationServerUsername">Descrição</label>
+                            <div class="input-group">
+                                <textarea class="form-control" name='descricao'>
+                                </textarea>
+                            </div>
+                            <br>
+                            <input type="submit" value="Cadastrar" class="btn btn-success">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function exibe_refeicao() {
+            const form_refeicao = document.getElementById('form-refeicao');
+            const form_opcao = document.getElementById('form-opcao');
+            form_refeicao.style.display = "block";
+            form_opcao.style.display = "none";
+        }
+
+        function exibe_opcao() {
+            const form_refeicao = document.getElementById('form-refeicao');
+            const form_opcao = document.getElementById('form-opcao');
+            form_refeicao.style.display = "none";
+            form_opcao.style.display = "block";
+        }
+    </script>
+{% endblock %}
