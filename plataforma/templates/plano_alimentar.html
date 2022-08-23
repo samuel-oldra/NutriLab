@@ -45,16 +45,22 @@
                     <span style="float: right;">{{ refeicao.horario }}h</span>
                 </div>
                 <div class="body-refeicao">
-                    <div class="opcao">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img width="100%" src="{% static 'plataforma/img/perfil1.png' %}">
+
+                    {% for opcao in opcoes %}
+                        {% if opcao.refeicao == refeicao %}
+                            <div class="opcao">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img width="100%" src="{{ opcao.imagem.url }}">
+                                    </div>
+                                    <div class="col-md-10">
+                                        {{ opcao.descricao }}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-10">
-                                Teste 2
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
             </div>
             <br>
@@ -126,12 +132,14 @@
                     </div>
 
                     <div id="form-opcao" style="display: none;">
-                        <form action="" method="POST" enctype='multipart/form-data'>
+                        <form action="{% url 'opcao' paciente.id %}" method="POST" enctype='multipart/form-data'>
                             {% csrf_token %}
                             <label for="validationServerUsername">Selecione a refeição</label>
                             <div class="input-group">
                                 <select class="form-control" name="refeicao">
-                                    <option value="">Café da manhã</option>
+                                    {% for refeicao in refeicoes %}
+                                        <option value="{{ refeicao.id }}">{{ refeicao.titulo }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <br>
@@ -142,8 +150,7 @@
                             <br>
                             <label for="validationServerUsername">Descrição</label>
                             <div class="input-group">
-                                <textarea class="form-control" name='descricao'>
-                                </textarea>
+                                <textarea class="form-control" name='descricao'></textarea>
                             </div>
                             <br>
                             <input type="submit" value="Cadastrar" class="btn btn-success">
