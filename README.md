@@ -25,6 +25,9 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_dos_pacientes.png)
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_do_paciente.png)
 ![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/dados_do_paciente_detalhes.png)
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/plano_alimentar_paciente.png)
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/adicionar_refeicao.png)
+![alt text](https://raw.githubusercontent.com/samuel-oldra/NutriLab/main/README_IMGS/adicionar_opcao.png)
 
 ## Comandos
 
