@@ -14,7 +14,7 @@ Desenvolvida uma aplicação completa para nutricionistas gerenciarem seus pacie
 
 ## Funcionalidades
 - Autenticação, Cadastro e Ativação de Usuários
-- Gestão de Pacientes e seus Dados Laboratoriais
+- Gestão de Pacientes, seus Dados Laboratoriais e seus Planos Alimentares
 
 ###
 
