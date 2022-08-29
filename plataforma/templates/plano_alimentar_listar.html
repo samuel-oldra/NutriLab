@@ -17,7 +17,6 @@
     <div class="row">
 
         {% for paciente in pacientes %}
-
             <div class="col-md-4">
                 <a href="{% url 'plano_alimentar' paciente.id %}" class="link-hover">
                     <div class="card-paciente">
@@ -35,7 +34,6 @@
                     </div>
                 </a>
             </div>
-
         {% endfor %}
 
     </div>

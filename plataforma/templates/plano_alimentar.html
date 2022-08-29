@@ -38,7 +38,6 @@
     <div class="fundo-alimentar">
 
         {% for refeicao in refeicoes %}
-
             <div class="refeicao">
                 <div class="head-refeicao">
                     <span>{{ refeicao.titulo }}</span>
@@ -65,7 +64,6 @@
                 </div>
             </div>
             <br>
-
         {% endfor %}
 
     </div>
@@ -138,9 +136,11 @@
                             <label for="validationServerUsername">Selecione a refeição</label>
                             <div class="input-group">
                                 <select class="form-control" name="refeicao">
+
                                     {% for refeicao in refeicoes %}
                                         <option value="{{ refeicao.id }}">{{ refeicao.titulo }}</option>
                                     {% endfor %}
+
                                 </select>
                             </div>
                             <br>
