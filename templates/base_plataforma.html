@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'plataforma/css/css.css' %}">
     <link rel="stylesheet" href="{% static 'plataforma/css/plano_alimentar.css' %}">
 {% endblock %}
-
 {% block 'body' %}
     <div class="container-fluid">
         <div class="row">
@@ -36,10 +34,8 @@
                 </a>
             </div>
             <div class="col-md-8">
-
                 {% block 'plataforma' %}
                 {% endblock %}
-
             </div>
         </div>
     </div>

@@ -1,8 +1,6 @@
 {% extends 'base_plataforma.html' %}
 {% load static %}
-
 {% block 'plataforma' %}
-
     {% if messages %}
         <br>
         {% for message in messages %}
@@ -11,7 +9,6 @@
             </div>
         {% endfor %}
     {% endif %}
-
     <br>
     <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal">
         Novo paciente
@@ -19,7 +16,6 @@
     <br>
     <br>
     <div class="row">
-
         {% for paciente in pacientes %}
             <div class="col-md-4">
                 <a href="#" class="link-hover">
@@ -39,9 +35,7 @@
                 </a>
             </div>
         {% endfor %}
-
     </div>
-
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">

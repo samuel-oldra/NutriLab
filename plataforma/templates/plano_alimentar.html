@@ -1,8 +1,6 @@
 {% extends 'base_plataforma.html' %}
 {% load static %}
-
 {% block 'plataforma' %}
-
     {% if messages %}
         <br>
         {% for message in messages %}
@@ -11,7 +9,6 @@
             </div>
         {% endfor %}
     {% endif %}
-
     <br>
     <div class="row">
         <div class="col-md-3">
@@ -36,7 +33,6 @@
     <br>
     <br>
     <div class="fundo-alimentar">
-
         {% for refeicao in refeicoes %}
             <div class="refeicao">
                 <div class="head-refeicao">
@@ -44,7 +40,6 @@
                     <span style="float: right;">{{ refeicao.horario }}h</span>
                 </div>
                 <div class="body-refeicao">
-
                     {% for opcao in opcoes %}
                         {% if opcao.refeicao == refeicao %}
                             <div class="opcao">
@@ -60,14 +55,11 @@
                             <br>
                         {% endif %}
                     {% endfor %}
-
                 </div>
             </div>
             <br>
         {% endfor %}
-
     </div>
-
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -88,7 +80,6 @@
                     </button>
                     <br>
                     <br>
-
                     <div id="form-refeicao" style="display: block;">
                         <form action="{% url 'refeicao' paciente.id %}" method="POST">
                             {% csrf_token %}
@@ -129,18 +120,15 @@
                             <input type="submit" value="Cadastrar" class="btn btn-success">
                         </form>
                     </div>
-
                     <div id="form-opcao" style="display: none;">
                         <form action="{% url 'opcao' paciente.id %}" method="POST" enctype='multipart/form-data'>
                             {% csrf_token %}
                             <label for="validationServerUsername">Selecione a refeição</label>
                             <div class="input-group">
                                 <select class="form-control" name="refeicao">
-
                                     {% for refeicao in refeicoes %}
                                         <option value="{{ refeicao.id }}">{{ refeicao.titulo }}</option>
                                     {% endfor %}
-
                                 </select>
                             </div>
                             <br>
@@ -157,12 +145,10 @@
                             <input type="submit" value="Cadastrar" class="btn btn-success">
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         function exibe_refeicao() {
             const form_refeicao = document.getElementById('form-refeicao');
@@ -170,7 +156,6 @@
             form_refeicao.style.display = "block";
             form_opcao.style.display = "none";
         }
-
         function exibe_opcao() {
             const form_refeicao = document.getElementById('form-refeicao');
             const form_opcao = document.getElementById('form-opcao');

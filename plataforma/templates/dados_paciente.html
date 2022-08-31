@@ -1,8 +1,6 @@
 {% extends 'base_plataforma.html' %}
 {% load static %}
-
 {% block 'plataforma' %}
-
     {% if messages %}
         <br>
         {% for message in messages %}
@@ -11,7 +9,6 @@
             </div>
         {% endfor %}
     {% endif %}
-
     <br>
     <div class="row">
         <div class="col-md-3">
@@ -42,7 +39,6 @@
         </tr>
         </thead>
         <tbody>
-
         {% for dado in dados_paciente %}
             <tr>
                 <th scope="row">{{ dado.peso }} Kg</th>
@@ -51,10 +47,8 @@
                 <td>{{ dado.percentual_musculo }}%</td>
             </tr>
         {% endfor %}
-
         </tbody>
     </table>
-
     <div style="width: 60%;">
         <canvas id="myChart"></canvas>
     </div>
@@ -85,7 +79,6 @@
             );
         })
     </script>
-
     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
