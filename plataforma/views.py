@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import constants
@@ -66,6 +67,7 @@ def dados_paciente_listar(request):
 @login_required(login_url='/auth/logar/')
 def dados_paciente(request, id):
     paciente = get_object_or_404(Pacientes, id=id)
+
     if not paciente.nutri == request.user:
         messages.add_message(request, constants.ERROR, 'Esse paciente não é seu')
         return redirect('/dados_paciente/')
@@ -78,7 +80,6 @@ def dados_paciente(request, id):
         altura = request.POST.get('altura')
         gordura = request.POST.get('gordura')
         musculo = request.POST.get('musculo')
-
         hdl = request.POST.get('hdl')
         ldl = request.POST.get('ldl')
         colesterol_total = request.POST.get('ctotal')
@@ -109,9 +110,14 @@ def dados_paciente(request, id):
 def grafico_peso(request, id):
     paciente = Pacientes.objects.get(id=id)
     dados = DadosPaciente.objects.filter(paciente=paciente).order_by("data")
+
     pesos = [dado.peso for dado in dados]
     labels = list(range(len(pesos)))
-    data = {'peso': pesos, 'labels': labels}
+
+    data = {
+        'peso': pesos,
+        'labels': labels
+    }
     return JsonResponse(data)
 
 
@@ -123,6 +129,7 @@ def plano_alimentar_listar(request):
 
 def plano_alimentar(request, id):
     paciente = get_object_or_404(Pacientes, id=id)
+
     if not paciente.nutri == request.user:
         messages.add_message(request, constants.ERROR, 'Esse paciente não é seu')
         return redirect('/plano_alimentar_listar/')
@@ -135,6 +142,7 @@ def plano_alimentar(request, id):
 
 def refeicao(request, id_paciente):
     paciente = get_object_or_404(Pacientes, id=id_paciente)
+
     if not paciente.nutri == request.user:
         messages.add_message(request, constants.ERROR, 'Esse paciente não é seu')
         return redirect('/plano_alimentar_listar/')
@@ -142,7 +150,6 @@ def refeicao(request, id_paciente):
     if request.method == "POST":
         titulo = request.POST.get('titulo')
         horario = request.POST.get('horario')
-
         carboidratos = request.POST.get('carboidratos')
         proteinas = request.POST.get('proteinas')
         gorduras = request.POST.get('gorduras')
@@ -164,13 +171,13 @@ def refeicao(request, id_paciente):
 def opcao(request, id_paciente):
     if request.method == "POST":
         id_refeicao = request.POST.get('refeicao')
-        imagem = request.FILES.get('imagem')
         descricao = request.POST.get("descricao")
+        imagem = request.FILES.get('imagem')
 
         opcao = Opcao(
             refeicao_id=id_refeicao,
-            imagem=imagem,
-            descricao=descricao
+            descricao=descricao,
+            imagem=imagem
         )
         opcao.save()
 
